@@ -1,0 +1,116 @@
+<div class="program-detail" *ngIf="program">
+  <div class="program-header">
+    <button mat-button [routerLink]="['/']" class="back-button">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+      Back to Programs
+    </button>
+    <div class="program-title">
+      <h1>{{program.title}}</h1>
+      <div class="program-badges">
+        <span class="level-badge">{{program.level}}</span>
+        <span class="duration-badge">
+          <fa-icon [icon]="faClock"></fa-icon>
+          {{program.duration}}
+        </span>
+        <span class="special-badge" *ngIf="program.isSpecial">Special Program</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="program-content">
+    <div class="program-image">
+      <img [src]="program.image" [alt]="program.title">
+    </div>
+
+    <div class="program-info">
+      <div class="program-description">
+        <h2>Program Overview</h2>
+        <p>{{program.detailedDescription}}</p>
+      </div>
+
+      <div class="program-features">
+        <h2>Key Features</h2>
+        <ul>
+          <li *ngFor="let feature of program.features">
+            <fa-icon [icon]="faCheckCircle"></fa-icon>
+            {{feature}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="program-benefits">
+        <h2>Benefits</h2>
+        <ul>
+          <li *ngFor="let benefit of program.benefits">
+            <fa-icon [icon]="faCheckCircle"></fa-icon>
+            {{benefit}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="program-requirements">
+        <h2>Requirements</h2>
+        <ul>
+          <li *ngFor="let requirement of program.requirements">
+            <fa-icon [icon]="faCheckCircle"></fa-icon>
+            {{requirement}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="program-schedule">
+        <h2>Schedule</h2>
+        <div class="schedule-details">
+          <div class="schedule-item">
+            <strong>Sessions:</strong> {{program.schedule.sessions}}
+          </div>
+          <div class="schedule-item">
+            <strong>Frequency:</strong> {{program.schedule.frequency}}
+          </div>
+          <div class="schedule-item">
+            <strong>Duration:</strong> {{program.schedule.duration}}
+          </div>
+        </div>
+      </div>
+
+      <div class="supplement-protocol" *ngIf="program.isSpecial && program.supplementProtocol">
+        <h2>Supplement Protocol</h2>
+        <div class="supplement-details">
+          <div class="supplement-list">
+            <h3>Recommended Supplements</h3>
+            <ul>
+              <li *ngFor="let supplement of program.supplementProtocol.supplements">
+                <fa-icon [icon]="faDumbbell"></fa-icon>
+                {{supplement}}
+              </li>
+            </ul>
+          </div>
+          <div class="supplement-timing">
+            <h3>Timing</h3>
+            <p>{{program.supplementProtocol.timing}}</p>
+          </div>
+          <div class="supplement-dosage">
+            <h3>Dosage</h3>
+            <p>{{program.supplementProtocol.dosage}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-price">
+        <h2>Program Price</h2>
+        <p class="price">{{program.price}}</p>
+        <button mat-raised-button color="primary" class="enroll-button">Enroll Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="program-not-found" *ngIf="!program">
+  <h2>Program Not Found</h2>
+  <p>The program you're looking for doesn't exist or has been removed.</p>
+  <button mat-raised-button color="primary" [routerLink]="['/']">Return to Programs</button>
+</div>
+
+<button class="return-to-top" *ngIf="showScrollTop" (click)="scrollToTop()">
+  <fa-icon [icon]="faArrowUp"></fa-icon>
+</button> 

@@ -1,0 +1,289 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <img src="assets/images/hero.jpeg" alt="Fitness hero" class="hero-image">
+    <div class="hero-text">
+      <h1 class="fade-in">Transform Your Life Through Fitness</h1>
+      <p class="fade-in">Join our community and achieve your fitness goals with expert guidance</p>
+      <button mat-raised-button color="primary" class="cta-button fade-in" (click)="scrollToPrograms()">
+        Get Started Today
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+  <div class="section-container">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>We are dedicated to helping you achieve your fitness goals through personalized training programs, expert guidance, and unwavering support.</p>
+        <ul class="about-features">
+          <li><fa-icon [icon]="faCheckCircle"></fa-icon> Expert Trainers</li>
+          <li><fa-icon [icon]="faCheckCircle"></fa-icon> Customized Programs</li>
+          <li><fa-icon [icon]="faCheckCircle"></fa-icon> State-of-the-art Facilities</li>
+        </ul>
+      </div>
+      <div class="about-image">
+        <img src="assets/images/about.jpeg" alt="Fitness training" class="rounded-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features-section">
+  <div class="section-container">
+    <h2>Why Choose Us</h2>
+    <div class="features-grid">
+      @for (feature of features; track feature) {
+        <div class="feature-card">
+          <fa-icon [icon]="feature.icon" class="feature-icon"></fa-icon>
+          <h3>{{feature.title}}</h3>
+          <p>{{feature.description}}</p>
+          <ul class="feature-benefits">
+            @for (benefit of feature.benefits; track benefit) {
+              <li><fa-icon [icon]="faCheckCircle"></fa-icon> {{benefit}}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Programs Section -->
+<section id="programs" class="programs-section">
+  <div class="section-container">
+    <h2>Our Programs</h2>
+    <div class="programs-grid">
+      @for (program of programs; track program) {
+        <div class="program-card">
+          <div class="program-image">
+            <img [src]="program.image" [alt]="program.title">
+            <div class="program-level">{{program.level}}</div>
+          </div>
+          <div class="program-content">
+            <h3>{{program.title}}</h3>
+            <p class="program-description">{{program.description}}</p>
+            <div class="program-duration">
+              <fa-icon [icon]="faClock"></fa-icon>
+              <span>{{program.duration}}</span>
+            </div>
+            <ul class="program-features">
+              @for (feature of program.features; track feature) {
+                <li>
+                  <fa-icon [icon]="faCheckCircle"></fa-icon>
+                  <span>{{feature}}</span>
+                </li>
+              }
+            </ul>
+            <button mat-raised-button color="primary" [routerLink]="['/program', getProgramId(program.title)]">Learn More</button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Trainers Section -->
+<section id="trainers" class="trainers-section">
+  <div class="section-container">
+    <h2>Expert Trainers</h2>
+    <div class="trainers-grid">
+      @for (trainer of trainers; track trainer) {
+        <div class="trainer-card">
+          <div class="trainer-image">
+            <img [src]="trainer.image" [alt]="trainer.name">
+            <div class="trainer-social">
+              <a [href]="trainer.socialLinks.facebook" target="_blank">
+                <fa-icon [icon]="faFacebook"></fa-icon>
+              </a>
+              <a [href]="trainer.socialLinks.twitter" target="_blank">
+                <fa-icon [icon]="faTwitter"></fa-icon>
+              </a>
+              <a [href]="trainer.socialLinks.instagram" target="_blank">
+                <fa-icon [icon]="faInstagram"></fa-icon>
+              </a>
+            </div>
+          </div>
+          <div class="trainer-content">
+            <h3>{{trainer.name}}</h3>
+            <span class="trainer-role">{{trainer.role}}</span>
+            <p class="trainer-bio">{{trainer.bio}}</p>
+            <div class="trainer-specialties">
+              @for (specialty of trainer.specialties; track specialty) {
+                <span class="specialty-tag">{{specialty}}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Schedule Section -->
+<section id="schedule" class="schedule-section">
+  <div class="section-container">
+    <h2>Class Schedule</h2>
+    <div class="schedule-content">
+      <div class="schedule-table">
+        <div class="schedule-header">
+          <div class="time-column">Time</div>
+          @for (day of weekDays; track day) {
+            <div class="day-column">{{day}}</div>
+          }
+        </div>
+        <div class="schedule-body">
+          @for (timeSlot of schedule; track timeSlot) {
+            <div class="schedule-row">
+              <div class="time-column">{{timeSlot.time}}</div>
+              @for (day of weekDays; track day) {
+                <div class="class-cell" [class.empty]="!timeSlot.classes[day]">
+                  @if (timeSlot.classes[day]) {
+                    <div class="class-info">
+                      <h4>{{timeSlot.classes[day].name}}</h4>
+                      <p class="trainer">{{timeSlot.classes[day].trainer}}</p>
+                      <div class="class-meta">
+                        <span class="duration">{{timeSlot.classes[day].duration}}</span>
+                        <span class="level">{{timeSlot.classes[day].level}}</span>
+                      </div>
+                    </div>
+                  } @else {
+                    <span class="no-class">No Class</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="section-container">
+    <h2>Get in Touch</h2>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <ul class="contact-details">
+          <li>
+            <fa-icon [icon]="faLocationDot"></fa-icon>
+            <span>123 Fitness Street, Gym City, GC 12345</span>
+          </li>
+          <li>
+            <fa-icon [icon]="faPhone"></fa-icon>
+            <span>(123) 456-7890</span>
+          </li>
+          <li>
+            <fa-icon [icon]="faEnvelope"></fa-icon>
+            <span>info&#64;fitnessapp.com</span>
+          </li>
+        </ul>
+        <div class="social-links">
+          <a href="#" class="social-icon"><fa-icon [icon]="faFacebook"></fa-icon></a>
+          <a href="#" class="social-icon"><fa-icon [icon]="faTwitter"></fa-icon></a>
+          <a href="#" class="social-icon"><fa-icon [icon]="faInstagram"></fa-icon></a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input 
+              type="text" 
+              id="name"
+              name="name"
+              [(ngModel)]="contactForm.name"
+              placeholder="Enter your full name"
+              required
+              [class.error]="contactForm.errors.name"
+            >
+            <span class="error-message" *ngIf="contactForm.errors.name">
+              {{contactForm.errors.name}}
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input 
+              type="email" 
+              id="email"
+              name="email"
+              [(ngModel)]="contactForm.email"
+              placeholder="Enter your email address"
+              required
+              [class.error]="contactForm.errors.email"
+            >
+            <span class="error-message" *ngIf="contactForm.errors.email">
+              {{contactForm.errors.email}}
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input 
+              type="text" 
+              id="subject"
+              name="subject"
+              [(ngModel)]="contactForm.subject"
+              placeholder="Enter message subject"
+              required
+              [class.error]="contactForm.errors.subject"
+            >
+            <span class="error-message" *ngIf="contactForm.errors.subject">
+              {{contactForm.errors.subject}}
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea 
+              id="message"
+              name="message"
+              [(ngModel)]="contactForm.message"
+              placeholder="Enter your message"
+              rows="5"
+              required
+              [class.error]="contactForm.errors.message"
+            ></textarea>
+            <span class="error-message" *ngIf="contactForm.errors.message">
+              {{contactForm.errors.message}}
+            </span>
+          </div>
+          <div class="form-actions">
+            <button 
+              mat-raised-button 
+              color="primary" 
+              type="submit"
+              [disabled]="isSubmitting"
+            >
+              <span *ngIf="!isSubmitting">Send Message</span>
+              <mat-spinner 
+                diameter="20" 
+                *ngIf="isSubmitting"
+                class="submit-spinner"
+              ></mat-spinner>
+            </button>
+          </div>
+          <div class="form-feedback" *ngIf="formFeedback">
+            <div class="success-message" *ngIf="formFeedback.success">
+              {{formFeedback.message}}
+            </div>
+            <div class="error-message" *ngIf="!formFeedback.success">
+              {{formFeedback.message}}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Return to Top Button -->
+<button class="return-to-top" (click)="scrollToTop()" [class.visible]="showScrollTop">
+  <fa-icon [icon]="faArrowUp"></fa-icon>
+</button>
+

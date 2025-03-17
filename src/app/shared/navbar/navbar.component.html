@@ -1,0 +1,47 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <a routerLink="/" class="logo">
+      <span class="logo-text">Fitness</span>
+      <span class="logo-highlight" style="color: #ff4081; font-weight: 800;">Pro</span>
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="nav-links" [class.active]="isMobileMenuOpen">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a (click)="scrollToSection('about')">About</a></li>
+      <li><a (click)="scrollToSection('features')">Why Us</a></li>
+      <li><a (click)="scrollToSection('programs')">Programs</a></li>
+      <li><a (click)="scrollToSection('trainers')">Trainers</a></li>
+      <li><a (click)="scrollToSection('schedule')">Schedule</a></li>
+      <li><a (click)="scrollToSection('contact')">Contact</a></li>
+      
+      <!-- Mobile Actions -->
+      <li class="mobile-actions">
+        <button mat-button class="login-btn" routerLink="/login">
+          <mat-icon>person</mat-icon>
+          Login
+        </button>
+        <button mat-raised-button color="primary" class="signup-btn" routerLink="/signup">
+          Sign Up
+        </button>
+      </li>
+    </ul>
+
+    <!-- Desktop Action Buttons -->
+    <div class="nav-actions">
+      <button mat-button class="login-btn" routerLink="/login">
+        <mat-icon>person</mat-icon>
+        Login
+      </button>
+      <button mat-raised-button color="primary" class="signup-btn" routerLink="/signup">
+        Sign Up
+      </button>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <mat-icon>{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </div>
+</nav> 
