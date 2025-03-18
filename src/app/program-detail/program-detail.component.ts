@@ -36,11 +36,11 @@ interface Program {
 }
 
 @Component({
-  selector: 'app-program-detail',
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule, MatButtonModule, RouterLink],
-  templateUrl: './program-detail.component.html',
-  styleUrls: ['./program-detail.component.css']
+    selector: 'app-program-detail',
+    standalone: true,
+    imports: [CommonModule, FontAwesomeModule, MatButtonModule, RouterLink],
+    templateUrl: './program-detail.component.html',
+    styleUrls: ['./program-detail.component.css']
 })
 export class ProgramDetailComponent implements OnInit {
   program: Program | null = null;

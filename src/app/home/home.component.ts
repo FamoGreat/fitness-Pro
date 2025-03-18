@@ -77,23 +77,20 @@ interface FormFeedback {
 }
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    MatButtonModule,
-    RouterModule,
-    FooterComponent,
-    FormsModule,
-    MatProgressSpinnerModule
-  ],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    standalone: true,
+    imports: [
+        CommonModule,
+        FontAwesomeModule,
+        MatButtonModule,
+        RouterModule,
+        FormsModule,
+        MatProgressSpinnerModule
+    ],
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // Current year for footer copyright
-  currentYear: number = new Date().getFullYear();
 
   // Font Awesome Icons
   faDumbbell = faDumbbell;
